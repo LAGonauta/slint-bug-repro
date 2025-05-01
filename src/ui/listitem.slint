@@ -1,0 +1,31 @@
+import { Palette, VerticalBox } from "std-widgets.slint";
+export component ListItem inherits Rectangle {
+    in property <string> text;
+    in property <int> show-num: 0;
+    height: 50px;
+    cm := ContextMenuArea {
+        Menu {
+            if show-num == 0: MenuItem {
+                title: text + " - Menu 1";
+            }
+
+            if show-num == 1: MenuItem {
+                title: text + " - Menu 2";
+            }
+        }
+    }
+    ta := TouchArea {
+        pointer-event(ev) => {
+            if ev.kind == PointerEventKind.up && (ev.button == PointerEventButton.right || ev.button == PointerEventButton.left) {
+                cm.show({x: self.mouse-x, y: self.mouse-y});
+            }
+        }
+    }
+    Rectangle {
+        border-width: 1px;
+        border-color: Palette.border;
+    }
+    Text {
+        text: text;
+    }
+}
