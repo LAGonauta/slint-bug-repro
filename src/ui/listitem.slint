@@ -1,15 +1,21 @@
 import { Palette, VerticalBox } from "std-widgets.slint";
+
+export enum ItemType {
+    A,
+    B
+}
+
 export component ListItem inherits Rectangle {
     in property <string> text;
-    in property <int> show-num: 0;
+    in property <ItemType> type: ItemType.A;
     height: 50px;
     cm := ContextMenuArea {
         Menu {
-            if show-num == 0: MenuItem {
+            if type == ItemType.A: MenuItem {
                 title: text + " - Menu 1";
             }
 
-            if show-num == 1: MenuItem {
+            if type == ItemType.B: MenuItem {
                 title: text + " - Menu 2";
             }
         }

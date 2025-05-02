@@ -1,12 +1,12 @@
 import { ListView, Palette, HorizontalBox, Button, VerticalBox } from "std-widgets.slint";
-import { ListItem } from "listitem.slint";
+import { ListItem, ItemType } from "listitem.slint";
 
 export component List inherits Rectangle {
     property <[string]> model: ["Item 1", "Item 2", "Item 3"];
     ListView {
         for item in model: ListItem {
             text: item;
-            show-num: 0;
+            type: ItemType.A;
         }
     }
 }
